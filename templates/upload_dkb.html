@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <div class="mobile-topbar">
     <div class="brand-inline">
-        <i class="ti ti-building-community"></i>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--sidebar-gold);"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M16 14h.01"></path></svg>
         <span>DUKCAPIL YOGYAKARTA</span>
     </div>
     <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Buka menu navigasi">
@@ -28,12 +28,17 @@
     <!-- ============ SIDEBAR ============ -->
     <aside class="sidebar" id="sidebar">
         <div class="brand">
-            <span class="brand-badge">
-                <i class="ti ti-shield-check"></i> RESMI DUKCAPIL
-            </span>
+            <div class="brand-top">
+                <span class="brand-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span class="badge-text">RESMI DUKCAPIL</span>
+                </span>
+            </div>
             <div class="title">
-                <span class="title-icon"><i class="ti ti-database"></i></span>
-                <span>Tools Kependudukan</span>
+                <span class="title-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </span>
+                <span class="brand-title-text">Tools Kependudukan</span>
             </div>
             <p class="sub">Kota Yogyakarta</p>
         </div>
@@ -42,40 +47,115 @@
 
         <div class="sidebar-section-label">Navigasi Utama</div>
         <nav class="sidebar-nav">
-            <a href="{{ url_for('home') }}">
-                <i class="ti ti-smart-home"></i> Beranda
+            <a href="{{ url_for('home') }}" data-tooltip="Beranda: Dashboard Utama DKB">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Beranda</span>
+                    <span class="nav-desc">Dashboard Utama DKB</span>
+                </div>
             </a>
-            <a href="{{ url_for('penyajian_page') }}">
-                <i class="ti ti-chart-pie-2"></i> Penyajian DKB
+            <a href="{{ url_for('penyajian_page') }}" data-tooltip="Penyajian DKB: Tabel Pivot & Visualisasi">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Penyajian DKB</span>
+                    <span class="nav-desc">Penyajian Data &amp; Pivot</span>
+                </div>
             </a>
-            <a href="{{ url_for('upload_page') }}" class="active">
-                <i class="ti ti-file-upload"></i> Import Data Excel
+            <a href="{{ url_for('upload_page') }}" class="active" data-tooltip="Import Data Excel: Pemetaan Kolom & Database">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="12" y2="12"></line><line x1="15" y1="15" x2="12" y2="12"></line></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Import Data Excel</span>
+                    <span class="nav-desc">Pemetaan &amp; Simpan Database</span>
+                </div>
             </a>
-            <a href="{{ url_for('import_page') }}">
-                <i class="ti ti-database-import"></i> Sistem Import Cepat
+            <a href="{{ url_for('import_page') }}" data-tooltip="Sistem Import Cepat: Batch Aggregator">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Sistem Import Cepat</span>
+                    <span class="nav-desc">Batch File Agregat DKB</span>
+                </div>
             </a>
         </nav>
 
         <div class="sidebar-foot">
-            <div class="system-status">
+            <div class="system-status" data-tooltip="Sistem Aktif - v2.1 DKB">
                 <div class="system-status-indicator">
                     <span class="dot"></span>
-                    <span>Sistem Aktif</span>
+                    <span class="status-text">Sistem Aktif</span>
                 </div>
-                <span style="color:#64748b; font-size:10.5px;">v2.1 DKB</span>
+                <span class="version-tag" style="color:#64748b; font-size:10.5px;">v2.1 DKB</span>
             </div>
         </div>
     </aside>
 
     <!-- ============ MAIN CONTENT ============ -->
     <main class="content">
-        <div class="top-bar-crumbs">
-            <a href="{{ url_for('home') }}"><i class="ti ti-home"></i> Beranda</a>
-            <i class="ti ti-chevron-right"></i>
-            <span>Penyajian Data</span>
-            <i class="ti ti-chevron-right"></i>
-            <span class="current">Import File Excel ke Database</span>
-        </div>
+        <header class="app-header">
+            <div class="app-header-left">
+                <a href="{{ url_for('home') }}" class="btn-back">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span>Kembali ke Beranda</span>
+                </a>
+                <div class="top-bar-crumbs">
+                    <a href="{{ url_for('home') }}"><i class="ti ti-home"></i> Beranda</a>
+                    <i class="ti ti-chevron-right"></i>
+                    <span>Penyajian Data</span>
+                    <i class="ti ti-chevron-right"></i>
+                    <span class="current">Import File Excel</span>
+                </div>
+            </div>
+            <div class="app-header-right">
+                <div class="user-profile-dropdown" id="userProfileDropdown">
+                    <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false">
+                        <div class="user-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span class="user-status-online"></span>
+                        </div>
+                        <div class="user-meta">
+                            <span class="user-name">Administrator</span>
+                            <span class="user-role"><i class="ti ti-shield-check"></i> Petugas Dukcapil</span>
+                        </div>
+                        <i class="ti ti-chevron-down user-dropdown-icon"></i>
+                    </button>
+                    <div class="user-dropdown-panel" id="userDropdownPanel">
+                        <div class="user-dropdown-header">
+                            <div class="user-avatar-lg">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </div>
+                            <div>
+                                <strong class="user-fullname">Admin Dukcapil</strong>
+                                <small class="user-email">admin@dukcapil.jogjakota.go.id</small>
+                            </div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="{{ url_for('home') }}" class="user-dropdown-link">
+                            <i class="ti ti-smart-home"></i> Dashboard Utama
+                        </a>
+                        <a href="{{ url_for('penyajian_page') }}" class="user-dropdown-link">
+                            <i class="ti ti-chart-pie-2"></i> Penyajian DKB
+                        </a>
+                        <a href="{{ url_for('upload_page') }}" class="user-dropdown-link">
+                            <i class="ti ti-file-upload"></i> Import Data Excel
+                        </a>
+                        <a href="{{ url_for('index') }}" class="user-dropdown-link">
+                            <i class="ti ti-world"></i> Portal Publik
+                        </a>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="{{ url_for('logout') }}" class="user-dropdown-link logout">
+                            <i class="ti ti-logout"></i> Keluar (Logout)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <div class="page-title">
             <div>Import &amp; Pemetaan Data Excel</div>
@@ -163,24 +243,7 @@
     </main>
 </div>
 
-<script>
-// Toggle Mobile Sidebar
-const mobileToggle = document.getElementById('mobileToggle');
-const sidebar = document.getElementById('sidebar');
-const mobileOverlay = document.getElementById('mobileOverlay');
-
-if (mobileToggle && sidebar && mobileOverlay) {
-    mobileToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        mobileOverlay.classList.toggle('open');
-    });
-    mobileOverlay.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        mobileOverlay.classList.remove('open');
-    });
-}
-</script>
-
+<script src="{{ url_for('static', filename='js/app-shell.js') }}"></script>
 <script src="{{ url_for('static', filename='js/upload-ui.js') }}"></script>
 </body>
 </html>

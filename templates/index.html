@@ -3,100 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Kependudukan Kabupaten/Kota</title>
+    <title>Sistem Import Cepat | Tools Kependudukan Kota Yogyakarta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<div class="app">
-    <aside class="sidebar">
+
+<div class="mobile-topbar">
+    <div class="brand-inline">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--sidebar-gold);"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M16 14h.01"></path></svg>
+        <span>DUKCAPIL YOGYAKARTA</span>
+    </div>
+    <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Buka menu navigasi">
+        <i class="ti ti-menu-2"></i>
+    </button>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="app-layout">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
         <div class="brand">
-            <div class="brand-mark">S</div>
-            <div><strong>Tools Kependudukan</strong><span>Data Import System</span></div>
+            <div class="brand-top">
+                <span class="brand-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span class="badge-text">RESMI DUKCAPIL</span>
+                </span>
+            </div>
+            <div class="title">
+                <span class="title-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </span>
+                <span class="brand-title-text">Tools Kependudukan</span>
+            </div>
+            <p class="sub">Kota Yogyakarta</p>
         </div>
-        <nav>
-            <a class="active" href="#upload">Import Excel</a>
-            <a href="#mapping">Mapping</a>
-            <a href="#preview">Preview</a>
-            <a href="#database">Database</a>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-section-label">Navigasi Utama</div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('home') }}" data-tooltip="Beranda: Dashboard Utama DKB">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Beranda</span>
+                    <span class="nav-desc">Dashboard Utama DKB</span>
+                </div>
+            </a>
+            <a href="{{ url_for('penyajian_page') }}" data-tooltip="Penyajian DKB: Tabel Pivot & Visualisasi">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Penyajian DKB</span>
+                    <span class="nav-desc">Penyajian Data &amp; Pivot</span>
+                </div>
+            </a>
+            <a href="{{ url_for('upload_page') }}" data-tooltip="Import Data Excel: Pemetaan Kolom & Database">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="12" y2="12"></line><line x1="15" y1="15" x2="12" y2="12"></line></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Import Data Excel</span>
+                    <span class="nav-desc">Pemetaan &amp; Simpan Database</span>
+                </div>
+            </a>
+            <a href="{{ url_for('import_page') }}" class="active" data-tooltip="Sistem Import Cepat: Batch Aggregator">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Sistem Import Cepat</span>
+                    <span class="nav-desc">Batch File Agregat DKB</span>
+                </div>
+            </a>
         </nav>
-        <div class="sidebar-note">
-            Upload beberapa file Excel sekaligus. Sistem menggabungkan hasil mapping ke struktur
-            <b>DATA_LAPORAN_PENDUDUK</b>.
+
+        <div class="sidebar-foot">
+            <div class="system-status" data-tooltip="Sistem Aktif - v2.1 DKB">
+                <div class="system-status-indicator">
+                    <span class="dot"></span>
+                    <span class="status-text">Sistem Aktif</span>
+                </div>
+                <span class="version-tag" style="color:#64748b; font-size:10.5px;">v2.1 DKB</span>
+            </div>
         </div>
     </aside>
 
-    <main class="main">
-        <header>
-            <div>
-                <p class="eyebrow">DATA MANAGEMENT</p>
-                <h1>Import File Excel</h1>
-                <p class="subtitle">
-                    Pilih beberapa file sekaligus. Sistem membaca pola L/P/JML, mengambil DESCRIP
-                    dari nama kolom, memetakan kode wilayah, lalu menggabungkan seluruh hasil.
-                </p>
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="content">
+        <header class="app-header">
+            <div class="app-header-left">
+                <a href="{{ url_for('home') }}" class="btn-back">
+                    <i class="ti ti-arrow-left"></i>
+                    <span>Kembali ke Beranda</span>
+                </a>
+                <div class="top-bar-crumbs">
+                    <a href="{{ url_for('home') }}"><i class="ti ti-home"></i> Beranda</a>
+                    <i class="ti ti-chevron-right"></i>
+                    <span>Data Management</span>
+                    <i class="ti ti-chevron-right"></i>
+                    <span class="current">Sistem Import Cepat</span>
+                </div>
             </div>
-            <div class="status"><i></i> Local System</div>
+            <div class="app-header-right">
+                <div class="user-profile-dropdown" id="userProfileDropdown">
+                    <button type="button" class="user-profile-btn" id="userProfileBtn" aria-haspopup="true" aria-expanded="false">
+                        <div class="user-avatar">
+                            <i class="ti ti-user"></i>
+                            <span class="user-status-online"></span>
+                        </div>
+                        <div class="user-meta">
+                            <span class="user-name">Administrator</span>
+                            <span class="user-role"><i class="ti ti-shield-check"></i> Petugas Dukcapil</span>
+                        </div>
+                        <i class="ti ti-chevron-down user-dropdown-icon"></i>
+                    </button>
+                    <div class="user-dropdown-panel" id="userDropdownPanel">
+                        <div class="user-dropdown-header">
+                            <div class="user-avatar-lg">
+                                <i class="ti ti-user"></i>
+                            </div>
+                            <div>
+                                <strong class="user-fullname">Admin Dukcapil</strong>
+                                <small class="user-email">admin@dukcapil.jogjakota.go.id</small>
+                            </div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="{{ url_for('home') }}" class="user-dropdown-link">
+                            <i class="ti ti-smart-home"></i> Dashboard Utama
+                        </a>
+                        <a href="{{ url_for('penyajian_page') }}" class="user-dropdown-link">
+                            <i class="ti ti-chart-pie-2"></i> Penyajian DKB
+                        </a>
+                        <a href="{{ url_for('upload_page') }}" class="user-dropdown-link">
+                            <i class="ti ti-file-upload"></i> Import Data Excel
+                        </a>
+                        <a href="{{ url_for('index') }}" class="user-dropdown-link">
+                            <i class="ti ti-world"></i> Portal Publik
+                        </a>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="{{ url_for('logout') }}" class="user-dropdown-link logout">
+                            <i class="ti ti-logout"></i> Keluar (Logout)
+                        </a>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <section class="card" id="upload">
-            <div class="section-title">
-                <div>
-                    <h2>1. Pilih File Excel</h2>
-                    <p>Anda dapat memilih lebih dari satu file .xlsx atau .xls.</p>
+        <div class="page-title">
+            <div>Sistem Import Cepat File Excel</div>
+            <div style="font-size:12px; font-weight:600; color:var(--ink-500); display:flex; align-items:center; gap:6px;">
+                <i class="ti ti-table-alias" style="color:var(--primary);"></i> Tabel: <code>DATA_LAPORAN_PENDUDUK</code>
+            </div>
+        </div>
+
+        <section class="panel card" id="upload">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <i class="ti ti-cloud-upload"></i> 1. Unggah File Excel Agregat
                 </div>
+                <span class="badge"><i class="ti ti-files"></i> Multi-File Didukung</span>
             </div>
 
             <form id="uploadForm">
                 <label class="dropzone" id="dropzone">
                     <input type="file" id="file" name="files" accept=".xlsx,.xls" multiple>
-                    <div class="upload-icon">↑</div>
+                    <div class="upload-icon"><i class="ti ti-upload"></i></div>
                     <strong>Klik untuk memilih beberapa file</strong>
                     <span>atau tarik beberapa file ke area ini</span>
+                    <div class="formats-badge">
+                        <i class="ti ti-file-spreadsheet"></i> Format Didukung: Microsoft Excel (.xlsx, .xls)
+                    </div>
                 </label>
 
                 <div id="fileList" class="file-list"></div>
 
                 <div class="actions">
-                    <button type="button" class="secondary" id="clearButton">Bersihkan</button>
-                    <button type="submit" class="primary" id="analyzeButton">Analisis Semua File</button>
+                    <button type="button" class="btn" id="clearButton"><i class="ti ti-trash"></i> Bersihkan</button>
+                    <button type="submit" class="btn btn-primary" id="analyzeButton"><i class="ti ti-sparkles"></i> Analisis Semua File</button>
                 </div>
             </form>
-
         </section>
 
-        <section id="mapping" class="card hidden">
-            <div class="section-title">
-                <div>
-                    <h2>2. Hasil Analisis & Mapping</h2>
-                    <p id="summary"></p>
+        <section id="mapping" class="panel card hidden">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <i class="ti ti-binary-tree"></i> 2. Hasil Analisis &amp; Mapping
                 </div>
             </div>
+            <p id="summary" class="help-text" style="font-size:13px; color:var(--ink-700); font-weight:600;"></p>
             <div id="fileResults"></div>
         </section>
 
-        <section id="preview" class="card hidden">
-            <div class="section-title">
-                <div>
-                    <h2>3. Preview Gabungan</h2>
-                    <p>Menampilkan maksimal 50 baris pertama dari seluruh hasil mapping.</p>
+        <section id="preview" class="panel card hidden">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <i class="ti ti-table"></i> 3. Preview Gabungan Hasil Pemetaan
                 </div>
-                <a class="secondary" href="/export">Export Hasil</a>
+                <a class="btn" href="/export" target="_blank"><i class="ti ti-file-export"></i> Export Hasil</a>
             </div>
-            <div class="table-wrap"><table id="previewTable"></table></div>
+            <div class="table-wrap"><table class="data-table" id="previewTable"></table></div>
         </section>
 
-        <section id="database" class="card hidden">
-            <div class="section-title">
-                <div>
-                    <h2>4. Simpan Semua ke Database</h2>
-                    <p>Data dari seluruh file yang berhasil dipetakan akan di-insert dalam satu proses.</p>
+        <section id="database" class="panel sage-top card hidden">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <i class="ti ti-database-check"></i> 4. Simpan Semua ke Database
                 </div>
-                <button class="primary" id="dbButton">Upload ke Database</button>
+                <button type="button" class="btn btn-primary" id="dbButton"><i class="ti ti-cloud-upload"></i> Upload ke Database</button>
             </div>
+            <p style="font-size:13px; color:var(--ink-600); margin:0 0 12px;">Data dari seluruh file yang berhasil dipetakan akan di-insert dalam satu proses.</p>
             <div id="message" class="message"></div>
         </section>
     </main>
@@ -363,5 +486,6 @@ function escapeHtml(value) {
         .replaceAll("'", "&#039;");
 }
 </script>
+<script src="{{ url_for('static', filename='js/app-shell.js') }}"></script>
 </body>
 </html>

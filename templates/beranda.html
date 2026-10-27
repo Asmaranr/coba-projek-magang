@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beranda | Tools Kependudukan Kota Yogyakarta</title>
+<meta name="description" content="Portal pengelolaan dan penyajian Data Kependudukan Bersih (DKB) Dinas Kependudukan dan Pencatatan Sipil Kota Yogyakarta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/beranda.css') }}">
+</head>
+<body class="bd-body">
+
+<!-- ============ NAVBAR ============ -->
+<header class="bd-nav" id="bdNav">
+    <div class="bd-wrap bd-nav-inner">
+        <a href="#beranda" class="bd-brand">
+            <span class="bd-brand-icon"><i class="ti ti-database"></i></span>
+            <span class="bd-brand-text">
+                <strong>Tools Kependudukan</strong>
+                <small>Kota Yogyakarta</small>
+            </span>
+        </a>
+
+        <nav class="bd-menu" id="bdMenu" aria-label="Navigasi utama">
+            <a href="#beranda">Beranda</a>
+            <a href="#fitur">Fitur</a>
+            <a href="#alur">Alur Kerja</a>
+        </nav>
+
+        <div class="bd-nav-actions">
+            <a href="{{ url_for('penyajian_guest_page') }}" class="bd-btn bd-btn-ghost">Penyajian DKB</a>
+            <a href="{{ url_for('login_page') }}" class="bd-btn bd-btn-gold"><i class="ti ti-login-2"></i> Masuk</a>
+        </div>
+
+        <button type="button" class="bd-burger" id="bdBurger" aria-label="Buka menu" aria-expanded="false">
+            <i class="ti ti-menu-2"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="bd-hero" id="beranda">
+    <div class="bd-wrap bd-hero-grid">
+        <div class="bd-hero-copy">
+            <span class="bd-eyebrow"><i class="ti ti-shield-check"></i> Dinas Kependudukan &amp; Pencatatan Sipil</span>
+            <h1>Data Kependudukan Bersih, <em>satu pintu</em> untuk semua laporan.</h1>
+            <p>
+                Portal internal untuk mengolah file Excel laporan penduduk, menyimpannya ke database,
+                dan menyajikan Data Kependudukan Bersih (DKB) per Kemantren dan Kelurahan di Kota Yogyakarta.
+            </p>
+            <div class="bd-cta">
+                <a href="{{ url_for('penyajian_guest_page') }}" class="bd-btn bd-btn-gold bd-btn-lg">
+                    <i class="ti ti-chart-pie-2"></i> Lihat Penyajian DKB
+                </a>
+            </div>
+        </div>
+
+        <aside class="bd-period-card" aria-label="Ringkasan periode data">
+            <div class="bd-period-head">
+                <span><i class="ti ti-calendar-stats"></i> Periode Data Tersedia</span>
+                <span class="bd-live" id="bdLive"><i></i> <span id="bdLiveText">Memuat…</span></span>
+            </div>
+            <div class="bd-period-main">
+                <small>Data terbaru</small>
+                <strong id="bdLatest">—</strong>
+            </div>
+            <div class="bd-period-row">
+                <div><small>Jumlah periode</small><strong id="bdCount">—</strong></div>
+                <div><small>Rentang tahun</small><strong id="bdRange">—</strong></div>
+            </div>
+            <div class="bd-years" id="bdYears" aria-label="Tahun data tersedia"></div>
+        </aside>
+    </div>
+</section>
+
+<!-- ============ STAT STRIP ============ -->
+<section class="bd-strip">
+    <div class="bd-wrap bd-strip-grid">
+        <div><i class="ti ti-building-community"></i><strong>14</strong><span>Kemantren</span></div>
+        <div><i class="ti ti-map-2"></i><strong>45</strong><span>Kelurahan</span></div>
+        <div><i class="ti ti-table-column"></i><strong>L · P · Jumlah</strong><span>Rincian tiap kategori</span></div>
+        <div><i class="ti ti-file-spreadsheet"></i><strong>.xlsx / .xls</strong><span>Format impor didukung</span></div>
+    </div>
+</section>
+
+<!-- ============ FITUR ============ -->
+<section class="bd-section" id="fitur">
+    <div class="bd-wrap">
+        <div class="bd-head">
+            <span class="bd-kicker">Fitur Utama</span>
+            <h2>Dari file Excel hingga tabel siap sajikan</h2>
+            <p>Tiga kemampuan inti yang dipakai petugas setiap periode pelaporan.</p>
+        </div>
+        <div class="bd-cards">
+            <article class="bd-card">
+                <span class="bd-card-icon blue"><i class="ti ti-chart-infographic"></i></span>
+                <h3>Penyajian Data DKB</h3>
+                <p>Tabel pivot per kategori dengan filter tanggal, fungsi, kemantren, dan kelurahan. Terbuka untuk umum tanpa login.</p>
+                <a href="{{ url_for('penyajian_guest_page') }}" class="bd-link">Buka penyajian <i class="ti ti-arrow-narrow-right"></i></a>
+            </article>
+            <article class="bd-card">
+                <span class="bd-card-icon gold"><i class="ti ti-table-import"></i></span>
+                <h3>Import Banyak File Excel</h3>
+                <p>Pilih banyak file sekaligus, atur SECT per file, lalu gabungkan hasilnya dalam satu proses.</p>
+                <span class="bd-lock"><i class="ti ti-lock"></i> Khusus petugas (login)</span>
+            </article>
+            <article class="bd-card">
+                <span class="bd-card-icon green"><i class="ti ti-wand"></i></span>
+                <h3>Pemetaan Kolom Otomatis</h3>
+                <p>Kolom L/P/JML dan kode wilayah dikenali otomatis, lengkap dengan pratinjau dan ekspor hasil ke Excel.</p>
+                <span class="bd-lock"><i class="ti ti-lock"></i> Khusus petugas (login)</span>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ALUR ============ -->
+<section class="bd-section bd-alt" id="alur">
+    <div class="bd-wrap">
+        <div class="bd-head">
+            <span class="bd-kicker">Alur Kerja</span>
+            <h2>Tiga langkah pengelolaan data</h2>
+        </div>
+        <ol class="bd-steps">
+            <li><span>1</span><h3>Unggah</h3><p>Pilih file Excel agregat DKB, satu atau banyak sekaligus.</p></li>
+            <li><span>2</span><h3>Deteksi &amp; Pemetaan</h3><p>Sistem membaca kolom L/P/JML dan kode wilayah, lalu menampilkan pratinjau.</p></li>
+            <li><span>3</span><h3>Simpan &amp; Sajikan</h3><p>Data masuk ke tabel <code>DATA_LAPORAN_PENDUDUK</code> dan siap ditampilkan sebagai pivot.</p></li>
+        </ol>
+    </div>
+</section>
+</main>
+
+<footer class="bd-footer">
+    <div class="bd-wrap">
+        <span>&copy; <span id="bdYear">2026</span> Dinas Kependudukan dan Pencatatan Sipil Kota Yogyakarta</span>
+        <span>Tools Kependudukan · DKB</span>
+    </div>
+</footer>
+
+<script>
+(function () {
+    // Menu mobile
+    var burger = document.getElementById('bdBurger');
+    var nav = document.getElementById('bdNav');
+    burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.querySelectorAll('#bdMenu a').forEach(function (a) {
+        a.addEventListener('click', function () { nav.classList.remove('open'); });
+    });
+    window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
+    document.getElementById('bdYear').textContent = new Date().getFullYear();
+
+    // Ringkasan periode dari data yang sudah ada di database
+    var BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    function el(id) { return document.getElementById(id); }
+    function yearOf(v) { var m = String(v).match(/(19|20)\d{2}/); return m ? parseInt(m[0], 10) : null; }
+    function pretty(v) {
+        var m = String(v).match(/^(\d{4})-(\d{2})-(\d{2})/);
+        return m ? parseInt(m[3], 10) + ' ' + BULAN[parseInt(m[2], 10) - 1] + ' ' + m[1] : String(v);
+    }
+    function setLive(ok, text) {
+        el('bdLive').className = 'bd-live ' + (ok ? 'ok' : 'off');
+        el('bdLiveText').textContent = text;
+    }
+
+    fetch('/api/penyajian/filter-options')
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+            if (!res || !res.success) { setLive(false, 'Database tidak terjangkau'); return; }
+            var list = (res.data && res.data.tanggal) || [];
+            if (!list.length) { setLive(false, 'Belum ada data'); return; }
+            var years = [];
+            list.forEach(function (t) {
+                var y = yearOf(t.value);
+                if (y && years.indexOf(y) === -1) years.push(y);
+            });
+            years.sort(function (a, b) { return b - a; });
+            el('bdLatest').textContent = pretty(list[0].value);
+            el('bdCount').textContent = list.length;
+            if (years.length) {
+                el('bdRange').textContent = years.length > 1 ? years[years.length - 1] + ' – ' + years[0] : String(years[0]);
+                el('bdYears').innerHTML = years.map(function (y) { return '<span>' + y + '</span>'; }).join('');
+            }
+            setLive(true, 'Terhubung');
+        })
+        .catch(function () { setLive(false, 'Database tidak terjangkau'); });
+})();
+</script>
+</body>
+</html>

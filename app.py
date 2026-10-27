@@ -385,18 +385,30 @@ def load_section_descrip_master():
 
 @app.route("/")
 def index():
-    return render_template("login.html")
+    # Beranda publik (sebelum login)
+    return render_template("beranda.html")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login_page():
+    if request.method == "GET":
+        return render_template("login.html")
+
     username = request.form.get("username", "")
     password = request.form.get("password", "")
 
     if username == "admin" and password == "admin123":
         return redirect(url_for("home"))
 
-    return "Login gagal"
+    return render_template(
+        "login.html",
+        error="Username atau password salah."
+    ), 401
+
+
+@app.route("/logout")
+def logout():
+    return redirect(url_for("index"))
 
 
 @app.route("/home")

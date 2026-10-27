@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
@@ -15,7 +15,7 @@
 
 <div class="mobile-topbar">
     <div class="brand-inline">
-        <i class="ti ti-building-community"></i>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--sidebar-gold);"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M16 14h.01"></path></svg>
         <span>DUKCAPIL YOGYAKARTA</span>
     </div>
     <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Buka menu navigasi">
@@ -29,45 +29,87 @@
     <!-- ============ SIDEBAR ============ -->
     <aside class="sidebar" id="sidebar">
         <div class="brand">
-            <span class="brand-badge">
-                <i class="ti ti-shield-check"></i> RESMI DUKCAPIL
-            </span>
+            <div class="brand-top">
+                <span class="brand-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span class="badge-text">RESMI DUKCAPIL</span>
+                </span>
+            </div>
             <div class="title">
-                <span class="title-icon"><i class="ti ti-database"></i></span>
-                <span>Tools Kependudukan</span>
+                <span class="title-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </span>
+                <span class="brand-title-text">Tools Kependudukan</span>
             </div>
             <p class="sub">Kota Yogyakarta</p>
         </div>
 
         <div class="sidebar-divider"></div>
 
-        <div class="sidebar-section-label">Navigasi Utama</div>
+        <div class="sidebar-section-label">Navigasi Publik</div>
         <nav class="sidebar-nav">
-            <a href="{{ url_for('penyajian_guest_page') }}" class="active">
-                <i class="ti ti-chart-pie-2"></i> Penyajian DKB
+            <a href="{{ url_for('index') }}" data-tooltip="Beranda: Portal Publik">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Beranda</span>
+                    <span class="nav-desc">Portal Publik DKB</span>
+                </div>
+            </a>
+            <a href="{{ url_for('penyajian_guest_page') }}" class="active" data-tooltip="Penyajian DKB: Visualisasi Publik">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Penyajian DKB</span>
+                    <span class="nav-desc">Tabel Pivot &amp; Visualisasi</span>
+                </div>
+            </a>
+            <a href="{{ url_for('login_page') }}" data-tooltip="Masuk Petugas: Login Petugas Dukcapil">
+                <div class="nav-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                </div>
+                <div class="nav-label-wrap">
+                    <span class="nav-title">Masuk Petugas</span>
+                    <span class="nav-desc">Login Petugas Dukcapil</span>
+                </div>
             </a>
         </nav>
 
         <div class="sidebar-foot">
-            <div class="system-status">
+            <div class="system-status" data-tooltip="Sistem Aktif - v2.1 DKB">
                 <div class="system-status-indicator">
                     <span class="dot"></span>
-                    <span>Sistem Aktif</span>
+                    <span class="status-text">Sistem Aktif</span>
                 </div>
-                <span style="color:#64748b; font-size:10.5px;">v2.1 DKB</span>
+                <span class="version-tag" style="color:#64748b; font-size:10.5px;">v2.1 DKB</span>
             </div>
         </div>
     </aside>
 
     <!-- ============ MAIN CONTENT ============ -->
     <main class="content">
-        <div class="top-bar-crumbs">
-            <a href="{{ url_for('home') }}"><i class="ti ti-home"></i> Beranda</a>
-            <i class="ti ti-chevron-right"></i>
-            <span>Penyajian Data</span>
-            <i class="ti ti-chevron-right"></i>
-            <span class="current">Tabel Pivot &amp; Visualisasi DKB</span>
-        </div>
+        <header class="app-header">
+            <div class="app-header-left">
+                <a href="{{ url_for('index') }}" class="btn-back">
+                    <i class="ti ti-arrow-left"></i>
+                    <span>Kembali ke Beranda</span>
+                </a>
+                <div class="top-bar-crumbs">
+                    <a href="{{ url_for('index') }}"><i class="ti ti-home"></i> Beranda</a>
+                    <i class="ti ti-chevron-right"></i>
+                    <span>Penyajian Data</span>
+                    <i class="ti ti-chevron-right"></i>
+                    <span class="current">Tabel Pivot &amp; Visualisasi DKB</span>
+                </div>
+            </div>
+            <div class="app-header-right">
+                <a href="{{ url_for('login_page') }}" class="btn btn-primary" style="font-size:12.5px; padding:7px 14px; text-decoration:none;">
+                    <i class="ti ti-login-2"></i> Masuk Petugas
+                </a>
+            </div>
+        </header>
 
         <div class="page-title">
             <div>Penyajian Data Kependudukan Bersih</div>
@@ -167,24 +209,7 @@
     </main>
 </div>
 
-<script>
-// Toggle Mobile Sidebar
-const mobileToggle = document.getElementById('mobileToggle');
-const sidebar = document.getElementById('sidebar');
-const mobileOverlay = document.getElementById('mobileOverlay');
-
-if (mobileToggle && sidebar && mobileOverlay) {
-    mobileToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        mobileOverlay.classList.toggle('open');
-    });
-    mobileOverlay.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        mobileOverlay.classList.remove('open');
-    });
-}
-</script>
-
+<script src="{{ url_for('static', filename='js/app-shell.js') }}"></script>
 <script defer src="{{ url_for('static', filename='js/penyajian-ui.js') }}"></script>
 </body>
 </html>
